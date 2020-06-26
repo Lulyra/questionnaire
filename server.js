@@ -1,16 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 //import routes
 const questions = require('./routes/api/questions');
-
-const CONNECTION_KEY = require('./config/keys');
 
 const app = express();
 const PORT = 5000;
 app.use(express.json());
 
-mongoose.connect(CONNECTION_KEY.URL)
+mongoose.connect(process.env.MONGODB_URI)
 	.then(() => console.log('DB connect...'))
 	.catch(err => console.log(err));
 
